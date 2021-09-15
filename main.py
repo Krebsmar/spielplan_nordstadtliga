@@ -1,19 +1,31 @@
-list = ["Team A","Team B", "Team C"]
+import os
+import random
 
-list_count = len(list)
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
 
-print(list_count)
-print(list[0])
+# now, to clear the screen
+cls()
 
+teamlist = []
 
-for x in range(len(list)):
-    print (list[x])
+print("#####################")
+print("### Nordstadtliga ###")
+print("###   Spielplan   ###")
+print("#####################")
+print("")
+team_count = int(input("Wieviele Mannschaften nehmen teil? "))
+print("")
 
-list.append("Team D")
+for x in range(team_count):
+    print("Mannschaft",x+1,"Name? ")
+    team = input()
+    teamlist.append(team)
+    print("")
 
-for x in range(len(list)):
-    print (list[x])
+list_of_pairs = [(teamlist[p1], teamlist[p2]) for p1 in range(len(teamlist)) for p2 in range(p1+1,len(teamlist))]
 
-list_of_pairs = [(list[p1], list[p2]) for p1 in range(len(list)) for p2 in range(p1+1,len(list))]
+random.shuffle(list_of_pairs)
 
-print(list_of_pairs)
+for x in range(len(list_of_pairs)):
+    print("Paarung",x+1,": ", list_of_pairs[x][0], " gegen " , list_of_pairs[x][1])
